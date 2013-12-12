@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+	<title>AJAX ding</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+
+<body>
+	<h1>Ik ben gay en ik heb een knop</h1>
+	<p> id hoort 20 te zijn maar als je op een knop drukt doet hij er 40 bij</p>
+	<p> id = <span class="idnummer"></span>  <button class="knop" name="knop">Let the magic happen</button></p>
+
+<script type="text/javascript">
+	var id = 20;
+	$(document).ready(function() {
+		
+
+		//douw variable tussen de span
+		$('.idnummer').html(id); 
+
+		$('.knop').on('click', function() {
+			$.ajax({
+				type: 'POST',
+				url: 'dinges.php',
+				data: {'id' : id},
+				success: function(result) {
+					console.log(result);
+					$('.idnummer').html(result.idNummer);
+					console.log(result.idnummer);
+				},
+				error: function() {
+					$('.idnummer').html('fuck')
+				}
+
+			});
+		});
+
+	});
+</script>
+</body>
+</html>
