@@ -7,6 +7,8 @@ if(isset($_POST['id'])) {
 	$id += 40;
 }
 $jsonarray = ['idNummer' => $id];
+// Een AJAX call haalt meestal alle content van een pagina. De regel eronder zorgt
+// dat de content een stuk JSON is. :)
 echo json_encode($jsonarray);
 
 ?>
