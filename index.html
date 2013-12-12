@@ -19,7 +19,8 @@
 		//douw variable tussen de span
 		$('.idnummer').html(id); 
 
-		//Als je op de knop drukt (jij bouwt waarschijnlijk je eigen trigger, voer de 2e parameter uit, een functie)
+		//Als je op de knop drukt (De 1e parameter van .on is de event
+		//jij bouwt waarschijnlijk je eigen event), voer de 2e parameter uit, een functie)
 		$('.knop').on('click', function() {
 			//genaamd $.ajax
 			$.ajax({
@@ -33,7 +34,7 @@
 				//dataType is belangrijk, want dan vertel wat je terug verwacht van de server
 				dataType: 'json',
 				//Dit spreekt voorzelf, result is wat je terug krijgt van de server. Mag je zelf noemen hoe je dat wilt.
-				// Elk key van de array die je dan met json heb encoded kun je dan berijken met result.key
+				//Elk key van de array die je dan met json heb encoded kun je dan berijken met result.key
 				success: function(result) {
 					console.log(result);
 					id = result.idNummer;
