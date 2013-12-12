@@ -11,26 +11,39 @@
 	<p> id = <span class="idnummer"></span>  <button class="knop" name="knop">Let the magic happen</button></p>
 
 <script type="text/javascript">
-	var id = 20;
+	//Okay, ik zet een globale variabel die elke functioe kan bereiken
+	var id = 20; 
 	$(document).ready(function() {
 		
 
 		//douw variable tussen de span
 		$('.idnummer').html(id); 
 
+		//Als je op de knop drukt (jij bouwt waarschijnlijk je eigen trigger, voer de 2e parameter uit, een functie)
 		$('.knop').on('click', function() {
+			//genaamd $.ajax
 			$.ajax({
-				type: 'POST',
-				url: 'dinges.php',
+
+				// in data maak je een object die je een stuurt, dit wordt verstuurt en
+				// PHP leest ze in de $_POST array. Dus je object wordt eigenlijk een assocative array
 				data: {'id' : id},
+				type: 'POST',
+				//Waar je de gegevens toe stuurt
+				url: 'dinges.php',
+				//dataType is belangrijk, want dan vertel wat je terug verwacht van de server
+				dataType: 'json',
+				//Dit spreekt voorzelf, result is wat je terug krijgt van de server. Mag je zelf noemen hoe je dat wilt.
+				// Elk key van de array die je dan met json heb encoded kun je dan berijken met result.key
 				success: function(result) {
 					console.log(result);
-					$('.idnummer').html(result.idNummer);
-					console.log(result.idnummer);
+					id = result.idNummer;
+					console.log(result.idNummer);
+					$('.idnummer').html(id);
 				},
 				error: function() {
 					$('.idnummer').html('fuck')
-				}
+				},
+				// contentType: 'application/json'
 
 			});
 		});
